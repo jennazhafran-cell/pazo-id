@@ -1,0 +1,23 @@
+<%- include('partials/header') %>
+
+<h2>Analisis Trading Terbaru</h2>
+
+<% if(articles.length === 0) { %>
+  <p style="margin-top: 20px;">Belum ada artikel analisis yang diterbitkan.</p>
+<% } else { %>
+  <div class="grid">
+    <% articles.forEach(art => { %>
+      <div class="card">
+        <img src="<%= art.thumbnail %>" alt="<%= art.title %>">
+        <div class="card-body">
+          <h3 class="card-title"><%= art.title %></h3>
+          <div class="card-date"><%= new Date(art.created_at).toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' }) %></div>
+          <p class="card-excerpt"><%= art.content.substring(0, 90) %>...</p>
+          <a href="/analisis/<%= art.slug %>" class="btn">Baca Analisis</a>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+<% } %>
+
+<%- include('partials/footer') %>
