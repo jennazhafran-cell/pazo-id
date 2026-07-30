@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title><%= article ? 'Edit' : 'Tambah' %> Artikel - PAZO.id</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container" style="margin-top: 30px; max-width: 700px;">
+    <h2><%= article ? 'Edit Artikel' : 'Tambah Artikel Baru' %></h2>
+    <form action="<%= article ? '/admin/edit/' + article.id : '/admin/tambah' %>" method="POST" enctype="multipart/form-data">
+      
+      <label>Judul Artikel</label>
+      <input type="text" name="title" value="<%= article ? article.title : '' %>" required>
+
+      <label>Thumbnail Gambar</label>
+      <input type="file" name="thumbnail" accept="image/*">
+      <% if(article && article.thumbnail) { %>
+        <p><small>Gambar saat ini: <%= article.thumbnail %></small></p>
+      <% } %>
+
+      <label>Isi Analisis / Kesimpulan</label>
+      <textarea name="content" rows="8" required><%= article ? article.content : '' %></textarea>
+
+      <label>Entry (Opsional)</label>
+      <input type="text" name="entry" value="<%= article ? article.entry : '' %>" placeholder="Contoh: 1.2345 / Buy Limit">
+
+      <label>Take Profit (Opsional)</label>
+      <input type="text" name="take_profit" value="<%= article ? article.take_profit : '' %>" placeholder="Contoh: 1.2450">
+
+      <label>Stop Loss (Opsional)</label>
+      <input type="text" name="stop_loss" value="<%= article ? article.stop_loss : '' %>" placeholder="Contoh: 1.2300">
+
+      <div style="margin-top: 20px;">
+        <button type="submit" class="btn">Simpan Artikel</button>
+        <a href="/admin" class="btn btn-danger">Batal</a>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
