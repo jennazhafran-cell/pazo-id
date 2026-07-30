@@ -1,0 +1,1 @@
+Project structure created. Paste the Gemini code into the corresponding files.
