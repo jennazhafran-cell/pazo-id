@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Login Admin - PAZO.id</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container" style="max-width: 400px; margin-top: 100px;">
+    <h2>Login Admin PAZO.id</h2>
+    <% if(error) { %>
+      <p style="color:red; margin-top:10px;"><%= error %></p>
+    <% } %>
+    <form action="/admin/login" method="POST">
+      <label>Username</label>
+      <input type="text" name="username" required>
+      
+      <label>Password</label>
+      <input type="password" name="password" required>
+      
+      <button type="submit" class="btn" style="width: 100%; margin-top: 20px;">Login</button>
+    </form>
+  </div>
+</body>
+</html>
