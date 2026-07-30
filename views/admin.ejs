@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard Admin - PAZO.id</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container" style="margin-top: 30px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <h2>Dashboard Admin - Artikel</h2>
+      <div>
+        <a href="/admin/tambah" class="btn">+ Tambah Artikel</a>
+        <a href="/admin/logout" class="btn btn-danger">Logout</a>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Judul</th>
+          <th>Tanggal</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if(articles.length === 0) { %>
+          <tr><td colspan="3">Belum ada artikel.</td></tr>
+        <% } %>
+        <% articles.forEach(art => { %>
+          <tr>
+            <td><%= art.title %></td>
+            <td><%= new Date(art.created_at).toLocaleDateString('id-ID') %></td>
+            <td>
+              <a href="/admin/edit/<%= art.id %>" class="btn" style="padding: 4px 8px; font-size: 0.8rem;">Edit</a>
+              <a href="/admin/hapus/<%= art.id %>" class="btn btn-danger" style="padding: 4px 8px; font-size: 0.8rem;" onclick="return confirm('Hapus artikel ini?')">Hapus</a>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
